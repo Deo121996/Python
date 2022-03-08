@@ -1,0 +1,14 @@
+TEAM_ID_LENGTH = 12
+USER_ID_LENGTH = 10
+TEAM_CALENDER_ID_LENGTH = 14
+MEETING_ID_LENGTH = 14
+DATE_TIME_FORMAT = "%Y-%m-%d %H:%M"
+MEETING_ID = "meeting_id"
+USER_ID = "user_id"
+TEAM_ID = "team_id"
+TEAM_CALENDER_ID = "calender_id"
+START_TIME = "start_time"
+END_TIME = "end_time"
+GUEST_ID = "guest_id"
+FROM = "from_time"
+TO = "to_time"

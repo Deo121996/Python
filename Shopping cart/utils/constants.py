@@ -1,0 +1,6 @@
+import enum
+
+
+PRODUCT_ID_LENGTH = 10
+BAG_ITEM_ID_LENGTH = 12
+BAG_ID_LENGTH = 14
