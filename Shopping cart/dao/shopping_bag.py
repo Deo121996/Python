@@ -1,7 +1,7 @@
 
 from dao.bag_item import BagItem
 from dao.product import Product
-from utils.string_utils import get_random_uuid
+from utils.helper import get_random_uuid, get_rounded_value
 from utils.constants import BAG_ID_LENGTH
 
 class ShoppingBag:
@@ -28,7 +28,7 @@ class ShoppingBag:
         """
         Remove product or decrease quanity of the product
         :param product_id:
-        :param qty - qty should be 0 to remove product from shopping bag:
+        :param qty - if qty - 0, remove product from the bag. if qty - non-zero, decrease qty of the product:
         """
         bag_item = self.bag_items.get(product_id)
         if not bag_item:
@@ -47,23 +47,19 @@ class ShoppingBag:
         """
         total = 0
         for _, item in self.bag_items.items():
-            total+= item.get_bag_item_total()
+            total += item.get_bag_item_total()
         result = dict()
-        result["products"] = self.get_bag_items()
+        result["products"] = self.get_all_bag_items()
         result["bag_id"] = self.bag_id
-        result["total"] = total
+        result["total"] = get_rounded_value(total)
         return result
 
-    def get_bag_items(self):
+    def get_all_bag_items(self):
         """
         get all bag items for the shopping bag
         :return bag_items:
         """
         bag_items = list()
         for item in self.bag_items.values():
-            bag_item = dict()
-            bag_item["item_id"] = item.product_id
-            bag_item["bagItemTotal"] = item.get_bag_item_total()
-            bag_item["quantity"] = item.qty
-            bag_items.append(bag_item)
+            bag_items.append(item.get_bag_item_details())
         return bag_items
